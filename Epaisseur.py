@@ -2,7 +2,7 @@
 
 __projet__ = "modl"
 __nom_fichier__ = "Epaisseur"
-__author__ = "Prénom Nom"
+__author__ = "Houssam BIADI"
 __date__ = "octobre 2019"
 
 import numpy as np
