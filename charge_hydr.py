@@ -1,7 +1,7 @@
 import numpy as np
 from Epaisseur import*
 import matplotlib.pyplot as plt
-
+# this code calculates the hydraulic charge at each point of the matrix
 Lx = 1000
 Ly = 1200
 dx = 20
@@ -22,51 +22,6 @@ ep=calcule_epaisseur(nx,ny)
 
 T = k1 * ep
 
-"""
-for i in range(1,nx - 1):
-    for j in range(1,ny - 1):
-        k=i+nx*j
-        Ae[k,k+1]=T[k+1]*(1/dx**2)
-        Ae[k,k]=-(1/dx**2*T[k+1]+T[k+nx]*1/dy**2+T[k]*(1/dx**2+1/dy**2))
-        Ae[k,k-1]=T[k]*(1/dx**2)
-        Ae[k,k-nx]=T[k]*(1/dy**2)
-        Ae[k,k+nx]=T[k+nx]*(1/dy**2)
-
-
-for j in range(ny-1):
-    i=nx-1
-    k=i+nx*j
-#    Ae[k,k]=1
-#    Ae[k][k-1]=-1
-
-    Ae[k, k] = -(T[k + nx] * 1 / dy ** 2 + T[k] * (1 / dx ** 2 + 1 / dy ** 2))
-    Ae[k,k-1]=T[k]*(1/dx**2)
-    Ae[k, k - nx] = T[k] * (1 / dy ** 2)
-    Ae[k, k + nx] = T[k + nx] * (1 / dy ** 2)
-    Be[k]=-q*T[k]*1/(rhau*k1*dx)
-
-
-for i in range(0,nx-1):
-    j=ny-1
-    k=i+nx*j
-#    Ae[k][k]=1
-#    Ae[k][k-nx]=-1
-
-    Ae[k, k + 1] = T[k + 1] * (1 / dx ** 2)
-    Ae[k, k] = -(1 / dx ** 2) * T[k + 1] + T[k] * (1 / dx ** 2  + 1 / dy ** 2)
-    Ae[k,k-1]=T[k]*(1/dx**2)
-    Ae[k, k - nx] = T[k] * (1 / dy ** 2)
-    Be[k]=-q*T[k]*1/(rhau*k1*dx)
-i=nx-1
-j=ny-1
-k=nx*j+i
-
-Ae[k, k] = -( T[k] * (1 / dx ** 2 + 1 / dy ** 2))
-Ae[k, k - 1] = T[k] * (1 / dx ** 2)
-Ae[k, k - nx] = T[k] * (1 / dy ** 2)
-Be[k] = -q * T[k] * 1 / (rhau * k1 * dx) - q * T[k] * 1 / (rhau * k1 * dx)
-"""
-
 for i in range(1,nx - 1):
     for j in range(1,ny - 1):
         k=i+nx*j
@@ -80,9 +35,6 @@ for i in range(1,nx - 1):
 for j in range(1,ny-1):
     i=nx-1
     k=i+nx*j
-#    Ae[k,k]=1
-#    Ae[k][k-1]=-1
-
     Ae[k, k] = -(T[k + nx]*1/dy**2  + T[k]*(1/dx**2+1/dy**2))
     Ae[k, k - nx] = T[k]*1/dy**2
     Ae[k, k - 1] = T[k]*1/dx**2
@@ -93,9 +45,6 @@ for j in range(1,ny-1):
 for i in range(1,nx-1):
     j=ny-1
     k=i+nx*j
-#    Ae[k][k]=1
-#    Ae[k][k-nx]=-1
-
     Ae[k, k + 1] = T[k + 1]*1/dx**2
     Ae[k, k] = - T[k + 1]*1/dx**2 - T[k]*(1/dx**2+1/dy**2)
     Ae[k,k-1]=T[k]*1/dx**2
